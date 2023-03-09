@@ -21,6 +21,18 @@ const reducer = (state = initialState, action) => {
         ...state,
         posts: action.payload
       };
+       const sortedComments =
+        action.payload === 'asc'
+          ? [...state.comments].sort(
+              (a, b) => new Date(a.created_at) - new Date(b.created_at)
+            )
+          : [...state.comments].sort(
+              (a, b) => new Date(b.created_at) - new Date(a.created_at)
+            );
+      return {
+        ...state,
+        comments: sortedComments,
+      };
     default:
       return state;
   }
