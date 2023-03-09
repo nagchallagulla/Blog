@@ -53,3 +53,30 @@ const CommentList = () => {
 };
 
 export default CommentList;
+
+ case ActionType.UPVOTE_COMMENT:
+     
+        
+        const upVotedComment= state.posts.map((post) =>
+          post.id === action.payload.id
+            ? { ...post, upvotes: (post.upvotes || 0) + 1, }
+           
+            : post
+        );
+        
+        return {
+        ...state,
+        posts:upVotedComment,
+      };
+    case ActionType.DOWNVOTE_COMMENT:
+     
+        const downVotedComment= state.posts.map((post) =>
+          post.id === action.payload.id
+            ? { ...post, downvotes: (post.downvotes || 0) + 1,}
+            : post
+        );
+       
+        return {
+        ...state,
+        posts:downVotedComment,
+      };
