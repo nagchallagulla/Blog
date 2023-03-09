@@ -1,0 +1,68 @@
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { viewPosts, sortComments, upvoteComment, downvoteComment } from '../action/action';
+const ViewPosts = ({ postId }) => {
+    const [sortOrder, setSortOrder] = useState("asc");
+    const [sort, setSort] = React.useState(1);
+    const [click, setClick] = useState(0);
+    const dispatch = useDispatch();
+    const posts = useSelector(state => state.posts);
+ 
+    useEffect(() => {
+        dispatch(viewPosts());
+    }, [dispatch]);
+    
+
+    const handleClick = () => {
+        if (sort === 0) {
+            console.log('hello');
+            setSort(1);
+            setClick(Math.random());
+            posts.sort((a, b) => new Date(a.created_at)- new Date(b.created_at));
+        }
+        else if (sort === 1) {
+            console.log('oo');
+            setClick(Math.random());
+            setSort(0);
+            posts.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        }
+    }
+
+    return (
+
+        <div>
+
+<button onClick={handleClick} className='sortButton'>Sort by Date</button>
+            {posts.map((post) => {
+                // var date = post.created_at.split("-");
+                // var date1 = date[2].split("T");
+                
+                return (
+
+                    <div key={post.id}>
+                        <h3> {post.title}</h3><br></br>
+                        <p>{post.comment}</p>
+                        <p>Date:{post.date}</p>
+                        {/* <div>Date - {date1[0]}/{date[1]}/{date[0]}</div> */}
+                        <button onClick={() => dispatch(upvoteComment(post.id))}>UpVote({post.upvotes || 0})</button>
+                        <button onClick={() => dispatch(downvoteComment(post.id))}>DownVote({post.downvotes || 0})</button>
+                    </div>
+
+                )
+            }
+        
+            )
+            }
+
+                
+                      </div>
+
+
+
+
+        
+
+    );
+};
+
+export default ViewPosts;
