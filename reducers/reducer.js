@@ -33,6 +33,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         comments: sortedComments,
       };
+      
+      react_devtools_backend.js:2655 Warning: Invalid DOM property `class`. Did you mean `className`?
+    at h3
+    at div
+    at div
+    at div
+    at ViewPosts (http://localhost:3000/static/js/bundle.js:739:76)
     default:
       return state;
   }
