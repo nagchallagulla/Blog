@@ -7,21 +7,30 @@
   border: 1px solid #ccc;
 }
 
+.post-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
 .post-title {
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-right: 10px;
 }
 
 .post-comment {
   font-size: 18px;
-  margin-bottom: 10px;
+  margin-right: 10px;
 }
 
 .post-date {
   font-size: 14px;
   color: #999;
-  margin-bottom: 10px;
+  margin-right: 10px;
 }
 
 .post-actions {
